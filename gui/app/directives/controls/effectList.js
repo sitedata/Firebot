@@ -24,26 +24,25 @@
                         <h3 class="{{$ctrl.headerClasses}}" style="display:inline;margin:0;font-weight: 100;">EFFECTS</h3>
                         <span style="font-size: 11px; margin-left: 2px;"><tooltip text="$ctrl.header" ng-if="$ctrl.header"></tooltip></span>
                     </div>
-                    
 
                     <div style="display:flex;align-items: center;">
 
                         <div style="margin-right: 20px;display: flex;flex-direction: column;align-items: flex-end;">
                             <div style="font-size: 10px;opacity: 0.8;text-align: right;">QUEUE<tooltip text="'Effect queues allow you to queue up effects so they don\\'t overlap each other. Particularly useful for events!'"></tooltip></div>
-                            <div class="text-dropdown filter-mode-dropdown" uib-dropdown uib-dropdown-toggle>
+                            <div class="text-dropdown filter-mode-dropdown" uib-dropdown uib-dropdown-toggle uib-tooltip="Queue selection">
                                 <div class="noselect pointer ddtext" style="font-size: 12px;">{{$ctrl.getSelectedEffectQueueName()}}<span class="fb-arrow down ddtext"></span></div>
                                 <ul class="dropdown-menu" style="z-index: 10000000;" uib-dropdown-menu>
 
                                     <li ng-click="$ctrl.effectsData.queue = null">
                                         <a style="padding-left: 10px;">Unset <tooltip text="'Effects will always play immediately when triggered.'"></tooltip>
                                         <span ng-show="$ctrl.effectsData.queue == null" style="color:green;display: inline-block;"><i class="fas fa-check"></i></span>
-                                        </a>   
+                                        </a>
                                     </li>
 
                                     <li ng-repeat="queue in $ctrl.eqs.getEffectQueues() track by queue.id" ng-click="$ctrl.toggleQueueSelection(queue.id)">
                                         <a style="padding-left: 10px;">
                                             <span>{{queue.name}}</span>
-                                            <span ng-show="$ctrl.effectsData.queue === queue.id" style="color:green;display: inline-block;"><i class="fas fa-check"></i></span>      
+                                            <span ng-show="$ctrl.effectsData.queue === queue.id" style="color:green;display: inline-block;"><i class="fas fa-check"></i></span>
                                         </a>
                                     </li>
 
@@ -70,8 +69,8 @@
                         <div class="test-effects-btn clickable" uib-tooltip="Test Effects">
                             <i class="far fa-play-circle" style="cursor: pointer;" ng-click="$ctrl.testEffects()"></i>
                         </div>
-                        
-                        <div uib-dropdown uib-dropdown-toggle>
+
+                        <div uib-dropdown uib-dropdown-toggle uib-tooltip="Effect Options">
                             <span class="noselect pointer effects-actions-btn"><i class="fal fa-ellipsis-v"></i></span>
                             <ul class="dropdown-menu" uib-dropdown-menu>
                                 <li ng-class="{'disabled': !$ctrl.effectsData.list.length > 0}" ng-click="!$ctrl.effectsData.list > 0 ? $event.stopPropagation() : null">
@@ -109,7 +108,7 @@
                                     <span class="flex-row-center ">
                                         <span class="dragHandle" style="height: 38px; width: 15px; align-items: center; justify-content: center; display: flex" ng-class="{'hiddenHandle': !hovering}" ng-click="$event.stopPropagation()">
                                             <i class="fal fa-bars" aria-hidden="true"></i>
-                                        </span> 
+                                        </span>
                                         <div class="clickable" style="font-size: 20px;height: 38px;width: 35px;text-align: center;display: flex;align-items: center;justify-content: center;" uib-dropdown uib-dropdown-toggle dropdown-append-to-body="true" ng-click="$event.stopPropagation()">
                                             <span class="noselect pointer"> <i class="fal fa-ellipsis-v"></i> </span>
                                             <ul class="dropdown-menu" uib-dropdown-menu>
@@ -120,16 +119,16 @@
                                                 <li><a href ng-click="$ctrl.removeEffectAtIndex($index)" style="color: #fb7373;"><i class="far fa-trash-alt" style="margin-right: 10px;"></i>  Delete</a></li>
                                             </ul>
                                         </div>
-                                    </span> 
+                                    </span>
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="add-more-functionality" style="margin-top: 16px;margin-left: 12px;">
-                        <a class="clickable" ng-click="$ctrl.openNewEffectModal()"> <i class="far fa-plus-circle"></i> New Effect</a>               
+                        <a class="clickable" ng-click="$ctrl.openNewEffectModal()"> <i class="far fa-plus-circle"></i> New Effect</a>
                     </div>
                 </div>
-                
+
             </div>
             `,
             controller: function(utilityService, effectHelperService, objectCopyHelper, effectQueuesService,
