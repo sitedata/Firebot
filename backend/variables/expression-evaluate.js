@@ -214,6 +214,16 @@ async function variable(handlers, expression, options, cursor = 0) {
         return {result: '', cursor, expression};
     }
 
+    varargs = varargs.map(v => {
+
+        try {
+            v = JSON.parse(v);
+        } catch (err) {
+            // silently fail
+        }
+
+        return v;
+    });
 
     // Validate args:
     try {
